@@ -12,7 +12,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div>
       <Navbar />
-      <div>{children}</div>
+      <div className="min-h-[85vh]">{children}</div>
       <Footer />
     </div>
   );
@@ -22,7 +22,7 @@ export function LayoutForm({ children }: LayoutProps) {
   return (
     <div>
       <NavbarForm />
-      <div>{children}</div>
+      <div className="min-h-[85vh]">{children}</div>
       <Footer />
     </div>
   );
