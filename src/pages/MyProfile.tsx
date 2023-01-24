@@ -31,7 +31,7 @@ function MyProfile() {
   return (
     <Layout>
       <header className="bg-white border-b-8 border-secondary p-5">
-        <h1 className="text-4xl text-center">Profile</h1>
+        <h1 className="text-4xl">Profile</h1>
       </header>
       <div className="flex justify-between">
         <Sidebar />
@@ -39,7 +39,7 @@ function MyProfile() {
           <div className="flex justify-between w-full">
             <div className="flex item">
               <img
-                className="w-24 h-20 rounded-xl"
+                className="w-24 h-20 rounded-3xl"
                 src={`https://pbs.twimg.com/media/FnPXcgiaUAIIiHS?format=jpg&name=medium`}
                 alt={`username`}
               />
@@ -52,7 +52,7 @@ function MyProfile() {
               <Btn className="max-w-xs" label="Add New Product" />
             </Link>
           </div>
-          <div className="p-8 grid grid-cols-3">
+          <div className="p-8 flex">
             {user?.product.map((user, index) => (
               <Cardprofile
                 key={index}
