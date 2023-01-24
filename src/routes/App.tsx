@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Items from "../pages/Items";
+import Shop from "../pages/Shop";
 import DetailItems from "../pages/DetailItems";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/shop",
-    element: <Items />,
+    element: <Shop />,
   },
   {
     path: "/detail/:id_item",
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
     element: <MyProfile />,
   },
   {
-    path: "/order",
+    path: "/transactions",
     element: <Transaction />,
   },
   {

@@ -11,9 +11,10 @@ module.exports = {
       colors: {
         primary: "#003F62",
         secondary: "#DDDBCB",
-        accent: "#1B9AAA",
         btn: "#E5A018",
         btnh: "#ce9015",
+        btns: "#1B9AAA",
+        btnsh: "#1B8896",
         form: "#D8D8DD",
       },
     },
