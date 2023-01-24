@@ -13,6 +13,7 @@ import Transaction from "../pages/Transaction";
 import EditProfile from "../pages/EditProfile";
 import AddProduct from "../pages/AddProduct";
 import DetailTransc from "../pages/DetailTransc";
+import EditProduct from "../pages/EditProduct";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/new-item",
     element: <AddProduct />,
+  },
+  {
+    path: "/edit-item",
+    element: <EditProduct />,
   },
   {
     path: "/order/:id_order",

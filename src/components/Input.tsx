@@ -13,4 +13,7 @@ export function InputForm({ placeholder, type }: InputFormProps) {
       <Input className="bg-form w-full" placeholder={placeholder} type={type} />
     </div>
   );
+
 }
+
+
