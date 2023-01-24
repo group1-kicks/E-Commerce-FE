@@ -38,7 +38,7 @@ export function Navbar() {
           </ul>
         </div>
         <Link to="/" className="flex items-center gap-2">
-          <img src="public/kicks-icon.svg" alt="" className="w-12" />
+          <img src="https://svgshare.com/i/pkJ.svg" alt="" className="w-12" />
           <h1 className="text-3xl">Kicks.</h1>
         </Link>
       </div>
