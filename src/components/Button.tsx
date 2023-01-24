@@ -1,7 +1,6 @@
 import { FC, ButtonHTMLAttributes } from "react";
 
 import { Button } from "react-daisyui";
-import { icons } from "react-icons";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
@@ -12,7 +11,15 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Btn({ label, className, disabled, icon }: ButtonProps) {
   return (
-    <Button className="bg-btn text-white hover:bg-btnh border-none rounded-full">
+    <Button className="bg-btn text-white hover:bg-btnh border-none rounded-full w-full">
+      {label} {icon}
+    </Button>
+  );
+}
+
+export function Btns({ label, className, disabled, icon }: ButtonProps) {
+  return (
+    <Button className="bg-btns text-white hover:bg-btnsh border-none rounded-full w-full">
       {label} {icon}
     </Button>
   );
