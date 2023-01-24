@@ -3,12 +3,12 @@ import { Layout } from "../components/Layout";
 import Input from "../components/Input";
 import { Btn } from "../components/Button";
 
-function AddProduct() {
+function EditProduct() {
   return (
     <Layout>
       <div className="w-full h-[50rem]">
         <div className="w-full bg-white h-20 justify-center text-4xl flex items-center">
-          <h1>Create new product</h1>
+          <h1>Edit product</h1>
         </div>
         <div className="flex">
           <img
@@ -46,7 +46,7 @@ function AddProduct() {
               />
               <div className="h-16" />
               <div className="flex justify-end ">
-                <Btn label="Add Product"></Btn>
+                <Btn label="Edit Product"></Btn>
               </div>
             </form>
           </div>
@@ -56,4 +56,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default EditProduct;
