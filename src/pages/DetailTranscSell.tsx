@@ -8,7 +8,7 @@ function DetailTranscSell() {
     <Layout>
       <div className="w-full  h-[50rem]">
         <div className="w-full bg-white h-20 justify-center text-4xl flex items-center">
-          <h1>Detail transactions | Buying</h1>
+          <h1>Detail transactions | Selling</h1>
         </div>
         <div className="flex">
           <Sidebar />

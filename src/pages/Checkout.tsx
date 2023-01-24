@@ -53,7 +53,7 @@ function Checkout() {
           <p className="text-primary">Rp.4,998,000</p>
         </div>
         <div className="justify-end pr-32 flex pb-8 bg-white">
-          <Btn label="Order"></Btn>
+          <Btn className="w-40" label="Order" />
         </div>
       </div>
     </Layout>
