@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "../components/Layout";
-import Input from "../components/Input";
+import { InputForm } from "../components/Input";
 import { Btn } from "../components/Button";
 
 function AddProduct() {
@@ -24,21 +24,21 @@ function AddProduct() {
           <div className="  rounded-2xl flex flex-col h-[35rem] p-12 w-1/2  bg-white">
             <form>
               <p className="font-semibold text-xl">Product Name</p>
-              <Input
+              <InputForm
                 id=""
                 type={"text"}
                 placeholder={"  sepatu"}
                 className="w-full h-12 rounded-lg bg-slate-300 "
               />
               <p className="font-semibold text-lg pt-3">Price</p>
-              <Input
+              <InputForm
                 id=""
                 type={"number"}
                 placeholder={"  1000000"}
                 className="w-full h-12 rounded-lg bg-slate-300 "
               />
               <p className="font-semibold text-xl pt-4">Description</p>
-              <Input
+              <InputForm
                 id=""
                 type={"text"}
                 placeholder={"  Description"}
