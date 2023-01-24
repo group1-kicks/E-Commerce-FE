@@ -14,6 +14,7 @@ import EditProfile from "../pages/EditProfile";
 import AddProduct from "../pages/AddProduct";
 import DetailTransc from "../pages/DetailTransc";
 import EditProduct from "../pages/EditProduct";
+import DetailTranscSell from "../pages/DetailTranscSell";
 
 const router = createBrowserRouter([
   {
@@ -65,8 +66,12 @@ const router = createBrowserRouter([
     element: <EditProduct />,
   },
   {
-    path: "/order/:id_order",
+    path: "/buying/:id_order",
     element: <DetailTransc />,
+  },
+  {
+    path: "/selling/:id_order",
+    element: <DetailTranscSell />,
   },
 ]);
 

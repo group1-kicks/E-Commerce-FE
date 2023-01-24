@@ -1,9 +1,9 @@
 import React from "react";
 import { Layout } from "../components/Layout";
 import { Sidebar } from "../components/Sidebar";
-import { Btns } from "../components/Button";
+import { Btn } from "../components/Button";
 
-function DetailTransc() {
+function DetailTranscSell() {
   return (
     <Layout>
       <div className="w-full  h-[50rem]">
@@ -38,7 +38,7 @@ function DetailTransc() {
               <p className=" text-primary pr-8">Rp.5000000</p>
             </div>
             <div className="flex justify-end">
-              <Btns className="w-52" label="Cancel transaction" />
+              <Btn className="w-52" label="Accept Order" />
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ function DetailTransc() {
   );
 }
 
-export default DetailTransc;
+export default DetailTranscSell;
 
 //   <div
 //     className=" font-semibold text-xl pt-12 w-full justify-center flex justify-items-center
