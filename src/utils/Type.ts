@@ -25,3 +25,10 @@ export interface UserTypes {
     }
   ];
 }
+
+export interface OrdersTypes {
+  order_id: number;
+  invoice: string;
+  order_date: string;
+  order_status: string;
+}
