@@ -43,7 +43,7 @@ function Cart() {
           <p className="text-primary">Rp.4,998,000</p>
         </div>
         <div className="justify-end pr-32 flex pb-8 bg-white">
-          <Btn label="checkout"></Btn>
+          <Btn className="w-40" label="checkout" />
         </div>
       </div>
     </Layout>
