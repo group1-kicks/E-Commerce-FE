@@ -27,7 +27,7 @@ function Cart() {
       });
   }, []);
 
-  const handleDelete = (cart_id: CartType) => {
+  const handleDelete = ({ cart_id }: { cart_id: CartType }) => {
     // DELETE request
     axios
       .delete(
@@ -43,7 +43,7 @@ function Cart() {
       });
   };
 
-  const handleUpdate = (cart_id: CartType) => {
+  const handleUpdate = ({ cart_id }: { cart_id: CartType }) => {
     // PUT request
     axios
       .put(
@@ -90,8 +90,8 @@ Copy code
               title={item.product_name}
               quantity={item.quantity}
               price={item.price}
-              // onDelete={() => handleDelete(item.product_id)}
-              // onUpdate={handleUpdate}
+              onDelete={() => handleDelete}
+              onUpdate={() => handleUpdate}
             />
           ))}
         </div>

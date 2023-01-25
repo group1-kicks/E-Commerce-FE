@@ -64,7 +64,7 @@ function EditProduct({ product_id }: { product_id: number }) {
             className=" pt-8 w-full justify-center flex justify-items-center
             h-auto"
           >
-            <div className="  rounded-2xl flex flex-col h-[30rem] p-12 w-4/6  bg-white">
+            <div className="  rounded-2xl flex flex-col h-[40rem] p-12 w-4/6  bg-white">
               <form onSubmit={handleSubmit}>
                 <p className="font-semibold text-xl">Product Name</p>
                 <InputForm
