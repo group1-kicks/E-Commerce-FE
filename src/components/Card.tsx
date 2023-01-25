@@ -18,6 +18,7 @@ interface CardTranscProps {
   invoice: string;
   date: string;
   status: string;
+  image?: string;
 }
 
 export function CardShop({ id, image, title, price, seller, loc }: CardProps) {
@@ -60,13 +61,13 @@ export function Cardprofile({ id, image, title, price }: CardProps) {
   );
 }
 
-export function CardTransc({ id, date, invoice, status }: CardTranscProps) {
+export function CardTransc({ id, date, invoice, status, image }: CardTranscProps) {
   return (
     <div
       className="flex justify-around items-center w-full bg-white rounded-2xl mt-4"
     >
       <img
-        src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/e2bce59c-b55e-4104-9a57-4b432ca1ed68/jordan-delta-3-low-shoes-fQrm6Q.png"
+        src={image}
         alt={`username`}
         className="w-14 h-14"
       />

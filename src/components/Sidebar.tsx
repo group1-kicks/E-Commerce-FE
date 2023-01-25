@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function Sidebar() {
   return (
-    <div className="bg-white w-full max-w-xs h-screen">
+    <div className="bg-white w-full max-w-[200px] h-screen">
       <div className="flex flex-col gap-5 mx-4 pt-8">
         <Link
           to="/profile/:id_user"

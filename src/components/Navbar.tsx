@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Btn } from "./Button";
 import { IoIosPerson, IoIosCart } from "react-icons/io";
+import { HiShoppingBag } from "react-icons/hi";
 
 export function Navbar() {
   return (
@@ -47,6 +48,10 @@ export function Navbar() {
           <Link to="/profile/:id_user" className="flex items-center gap-2">
             <IoIosPerson className="text-2xl" />
             <a>Profile</a>
+          </Link>
+          <Link to="/shop" className="flex items-center gap-2">
+            <HiShoppingBag className="text-2xl" />
+            <a>Shop</a>
           </Link>
           <Link to="/cart" className="flex items-center gap-2">
             <IoIosCart className="text-2xl" />
