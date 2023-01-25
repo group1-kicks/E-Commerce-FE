@@ -133,7 +133,7 @@ export function NavbarForm() {
       <div className="navbar-start">
         <Link to="/" className="flex items-center gap-2">
           <img
-            src="public/kicks-icon.svg"
+            src="https://svgshare.com/i/pkJ.svg"
             alt=""
             className="w-12"
           />
