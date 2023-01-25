@@ -1,18 +1,12 @@
 import { FC, InputHTMLAttributes } from "react";
 
-interface FormProps
-  extends InputHTMLAttributes<HTMLInputElement> {
+interface FormProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
-  id: string;
+  id?: string;
   min?: string;
 }
 
-export const InputForm: FC<FormProps> = ({
-  id,
-  title,
-  min,
-  ...props
-}) => {
+export const InputForm: FC<FormProps> = ({ id, title, min, ...props }) => {
   return (
     <div className="my-3">
       <p className="my-1">{title}</p>
@@ -25,4 +19,3 @@ export const InputForm: FC<FormProps> = ({
     </div>
   );
 };
-
