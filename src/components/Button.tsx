@@ -8,6 +8,7 @@ interface ButtonProps
   icon?: JSX.Element;
   className?: string;
   disabled?: boolean;
+  onClick?: any;
 }
 
 export function Btn({
@@ -31,11 +32,13 @@ export function Btns({
   className,
   disabled,
   icon,
+  onClick,
 }: ButtonProps) {
   return (
     <Button
       className={`bg-btns text-white hover:bg-btnsh border-none rounded-full w-full ${className}`}
       disabled={disabled}
+      onClick={onClick}
     >
       {label} {icon}
     </Button>
