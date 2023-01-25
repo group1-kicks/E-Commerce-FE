@@ -8,7 +8,15 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   color: black;
-  background-color: #dddbcb;
+  background-image: linear-gradient(
+    to bottom,
+    var(--tw-gradient-stops)
+  );
+  --tw-gradient-from: #dddbcb;
+  --tw-gradient-to: rgb(221 219 203 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to);
+  --tw-gradient-to: #fff;
 }
 
 * {
