@@ -26,14 +26,14 @@ function Register() {
 
   useEffect(() => {
     if (
-      formRegister.name === "" ||
-      formRegister.username === "" ||
-      formRegister.email === "" ||
-      formRegister.password === ""
+      formRegister.name &&
+      formRegister.username &&
+      formRegister.email &&
+      formRegister.password
     ) {
-      setDisabled(true);
-    } else {
       setDisabled(false);
+    } else {
+      setDisabled(true);
     }
   }, [formRegister]);
 
