@@ -14,6 +14,8 @@ function Login() {
   });
 
   const [cookies, setCookie, removeCookie] = useCookies([
+    "id",
+    "username",
     "token",
   ]);
 
@@ -46,6 +48,8 @@ function Login() {
       )
       .then((res) => {
         console.log(res.data.data);
+        setCookie("id", res.data.data.id);
+        setCookie("username", res.data.data.username);
         setCookie("token", res.data.data.token);
 
         alert("Success login");

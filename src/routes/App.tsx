@@ -1,5 +1,8 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -67,7 +70,7 @@ const router = createBrowserRouter([
     element: <AddProduct />,
   },
   {
-    path: "/edit-item",
+    path: "/edit-item/:product_id",
     element: <EditProduct />,
   },
   {

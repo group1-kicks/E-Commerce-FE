@@ -35,11 +35,15 @@ export function NavbarGuest() {
 
 export function NavbarLogin() {
   const [cookie, setCookie, removeCookie] = useCookies([
+    "id",
+    "username",
     "token",
   ]);
   const navigate = useNavigate();
 
   const handleLogOut = () => {
+    removeCookie("id");
+    removeCookie("username");
     removeCookie("token");
     alert("You've been log out");
     navigate("/");
@@ -60,7 +64,7 @@ export function NavbarLogin() {
             className="dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52"
           >
             <Link
-              to="/profile/:id_user"
+              to={`/profile/${cookie.username}`}
               className="flex items-center gap-2"
             >
               <IoIosPerson className="text-2xl" />
@@ -94,7 +98,7 @@ export function NavbarLogin() {
       <div className="navbar-end hidden lg:flex ">
         <ul className="flex gap-8">
           <Link
-            to="/profile/:id_user"
+            to={`/profile/${cookie.username}`}
             className="flex items-center gap-2"
           >
             <IoIosPerson className="text-2xl" />
