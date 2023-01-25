@@ -42,10 +42,7 @@ function Login() {
   ) => {
     e.preventDefault();
     axios
-      .post(
-        "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/login",
-        formLogin
-      )
+      .post("https://onallo.store/login", formLogin)
       .then((res) => {
         console.log(res.data.data);
         setCookie("id", res.data.data.id);
