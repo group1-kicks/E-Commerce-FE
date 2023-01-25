@@ -1,22 +1,28 @@
 import { FC, InputHTMLAttributes } from "react";
 
-import { Input } from "react-daisyui";
-
-interface InputFormProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeholder?: string;
-  type?: string;
+interface FormProps
+  extends InputHTMLAttributes<HTMLInputElement> {
+  title?: string;
+  id: string;
   min?: string;
 }
 
-export function InputForm({ placeholder, type, min }: InputFormProps) {
+export const InputForm: FC<FormProps> = ({
+  id,
+  title,
+  min,
+  ...props
+}) => {
   return (
-    <div>
-      <Input
-        className="bg-form w-full"
-        placeholder={placeholder}
-        type={type}
+    <div className="my-3">
+      <p className="my-1">{title}</p>
+      <input
+        id={id}
         min={min}
+        className="bg-form w-full p-3 rounded-lg "
+        {...props}
       />
     </div>
   );
-}
+};
+

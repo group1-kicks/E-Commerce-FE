@@ -9,9 +9,9 @@ function EditProfile() {
   return (
     <Layout>
       <div className="w-full h-[55rem]">
-        <div className="w-full bg-white h-20 justify-center text-4xl flex items-center">
+        <header className="bg-white border-b-8 border-secondary text-4xl p-5">
           <h1>Edit Profile</h1>
-        </div>
+        </header>
         <div className="flex">
           <Sidebar />
           <div

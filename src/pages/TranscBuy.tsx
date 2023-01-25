@@ -40,10 +40,11 @@ function DetailTransc() {
             <div className="flex justify-center items-center h-10 gap-10 bg-white rounded-2xl w-full max-w-sm">
               <Link to="/transactions">Buying</Link>
               <p>|</p>
-              <Link to="/transactions">Selling</Link>
+              <Link to="/transactions-selling">Selling</Link>
             </div>
             <CardTransc
               id={1}
+              image={`https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/e2bce59c-b55e-4104-9a57-4b432ca1ed68/jordan-delta-3-low-shoes-fQrm6Q.png`}
               invoice={`XVII/20231/UDSIDJ`}
               status={`On Process`}
               date={`21 Januari 2023`}

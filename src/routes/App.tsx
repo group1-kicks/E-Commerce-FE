@@ -9,12 +9,13 @@ import DetailItems from "../pages/DetailItems";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import MyProfile from "../pages/MyProfile";
-import Transaction from "../pages/Transaction";
+import Transaction from "../pages/TranscBuy";
 import EditProfile from "../pages/EditProfile";
 import AddProduct from "../pages/AddProduct";
 import DetailTransc from "../pages/DetailTransc";
 import EditProduct from "../pages/EditProduct";
 import DetailTranscSell from "../pages/DetailTranscSell";
+import TranscSell from "../pages/TranscSell";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: "/transactions",
     element: <Transaction />,
+  },
+  {
+    path: "/transactions-selling",
+    element: <TranscSell />,
   },
   {
     path: "/profile-edit/:id_user",

@@ -1,17 +1,26 @@
 import React, { FC } from "react";
+import { useCookies } from "react-cookie";
 
 import Footer from "./Footer";
-import { Navbar } from "./Navbar";
-import { NavbarForm } from "./Navbar";
+import {
+  NavbarGuest,
+  NavbarLogin,
+  NavbarForm,
+} from "./Navbar";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
+  const [cookie, setCookie, removeCookie] = useCookies([
+    "token",
+  ]);
+  const checkToken = cookie.token;
+
   return (
     <div>
-      <Navbar />
+      {checkToken ? <NavbarLogin /> : <NavbarGuest />}
       <div className="min-h-[85vh]">{children}</div>
       <Footer />
     </div>

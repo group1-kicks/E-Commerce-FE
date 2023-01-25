@@ -2,7 +2,8 @@ import { ButtonHTMLAttributes } from "react";
 
 import { Button } from "react-daisyui";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   icon?: JSX.Element;
   className?: string;
@@ -10,7 +11,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: any;
 }
 
-export function Btn({ label, className, disabled, icon }: ButtonProps) {
+export function Btn({
+  label,
+  className,
+  disabled,
+  icon,
+}: ButtonProps) {
   return (
     <Button
       className={`bg-btn text-white hover:bg-btnh border-none rounded-full w-full disabled:bg-btnh disabled:text-gray-200 ${className}`}
