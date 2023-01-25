@@ -110,7 +110,7 @@ function Register() {
           <p className="text-sm">
             Already have an account?
             <Link
-              className="text-primary font-bold"
+              className="text-primary font-bold ml-1"
               to="/login"
             >
               login
