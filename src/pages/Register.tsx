@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { LayoutForm } from "../components/Layout";
 import { InputForm } from "../components/Input";
@@ -107,6 +107,15 @@ function Register() {
             onChange={(e) => setRePass(e.target.value)}
             value={rePass}
           />
+          <p className="text-sm">
+            Already have an account?
+            <Link
+              className="text-primary font-bold"
+              to="/login"
+            >
+              login
+            </Link>
+          </p>
           <Btn
             disabled={disabled}
             className="my-10"
