@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 import { Btn, Btns } from "./Button";
 import {
@@ -36,10 +37,12 @@ export function NavbarLogin() {
   const [cookie, setCookie, removeCookie] = useCookies([
     "token",
   ]);
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     removeCookie("token");
     alert("You've been log out");
+    navigate("/");
   };
 
   return (
