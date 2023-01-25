@@ -1,49 +1,112 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Layout } from "../components/Layout";
 import CardCart from "../components/CardCart";
 import { Btn } from "../components/Button";
+import { Link } from "react-router-dom";
+
+interface CartType {
+  product_id?: number;
+  image?: string;
+  product_name?: string;
+  seller_name?: string;
+  price?: number;
+  quantity?: number;
+  stock?: number;
+}
 
 function Cart() {
+  const [cartItems, setCartItems] = useState<CartType[]>([]);
+
+  useEffect(() => {
+    // GET request
+    axios
+      .get("https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts")
+      .then((res) => {
+        setCartItems(res.data);
+      });
+  }, []);
+
+  const handleDelete = (cart_id: CartType) => {
+    // DELETE request
+    axios
+      .delete(
+        `https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts/${cart_id}`
+      )
+      .then((res) => {
+        setCartItems((prev) =>
+          prev.filter((item) => item.product_id !== cart_id)
+        );
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  };
+
+  const handleUpdate = (cart_id: CartType) => {
+    // PUT request
+    axios
+      .put(
+        `https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts/${cart_id}`,
+        cart_id
+      )
+      .then((res) => {
+        setCartItems((prev) =>
+          prev.map((item) =>
+            item.product_id === cart_id.product_id ? cart_id : item
+          )
+        );
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  };
+
   return (
     <Layout>
       <div className="w-full h-full font-semibold text-xl">
         <div
           className="w-full bg-white h-20 justify-center text-4xl flex items-center
 
-        "
+Copy code
+    "
         >
           <h1>Cart</h1>
         </div>
         <div
           className="flex justify-center pt-8
-         "
+     "
         >
           <p className=" self-center ">items</p>
           <p className="pl-48 self-center ">Quantity</p>
           <p className="pl-48 self-center ">Price</p>
         </div>
         <div className="flex justify-center pt-8">
-          <CardCart
-            key={1}
-            id={1}
-            image={
-              "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/bac37b3a-4a82-4d7e-a0ef-69000ce91066/react-infinity-3-road-running-shoes-mMGgGZ.png"
-            }
-            title={"Nike React Infinity 3"}
-            quantity={1}
-            price={2000000}
-          />
+          {cartItems.map((item, index) => (
+            <CardCart
+              key={index}
+              id={item.product_id}
+              image={item.image}
+              title={item.product_name}
+              quantity={item.quantity}
+              price={item.price}
+              // onDelete={() => handleDelete(item.product_id)}
+              // onUpdate={handleUpdate}
+            />
+          ))}
         </div>
         <div
           className="h-60
-        "
+    "
         />
         <div className="bg-white h-28 flex justify-around pt-8 ">
           <p>Total Price</p>
           <p className="text-primary">Rp.4,998,000</p>
         </div>
         <div className="justify-end pr-32 flex pb-8 bg-white">
-          <Btn className="w-40" label="checkout" />
+          <Link to="/checkout">
+            <Btn className="w-40" label="checkout" />
+          </Link>
         </div>
       </div>
     </Layout>
