@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ interface CardProps {
   price: number;
   seller?: string;
   loc?: string;
+  deleteItem?: any;
 }
 
 interface CardTranscProps {
@@ -21,7 +22,14 @@ interface CardTranscProps {
   image?: string;
 }
 
-export function CardShop({ id, image, title, price, seller, loc }: CardProps) {
+export function CardShop({
+  id,
+  image,
+  title,
+  price,
+  seller,
+  loc,
+}: CardProps) {
   const navigate = useNavigate();
   const onClickDetail = (index: number) => {
     navigate(`/detail/${index}`);
@@ -34,7 +42,11 @@ export function CardShop({ id, image, title, price, seller, loc }: CardProps) {
       }}
       className="flex flex-col bg-white w-[330px] rounded-3xl gap-2 m-5 p-5 shadow-sm cursor-pointer lg:w-96"
     >
-      <img src={image} alt={title} className="w-72 rounded-3xl lg:w-80" />
+      <img
+        src={image}
+        alt={title}
+        className="w-72 rounded-3xl lg:w-80"
+      />
       <div className="flex justify-between">
         <h1 className="tracking-tighter">{title}</h1>
         <h1 className="tracking-tighter">{seller}</h1>
@@ -47,25 +59,43 @@ export function CardShop({ id, image, title, price, seller, loc }: CardProps) {
   );
 }
 
-export function Cardprofile({ id, image, title, price }: CardProps) {
+export function Cardprofile({
+  id,
+  image,
+  title,
+  price,
+  deleteItem,
+}: CardProps) {
   return (
-    <div className="flex flex-col bg-white w-[330px] rounded-3xl gap-2 m-5 p-5 shadow-sm lg:w-80">
+    <div className="flex flex-col bg-white w-[330px] min-w-[330px] rounded-3xl gap-2 m-5 p-5 shadow-sm lg:w-80">
       <div className="flex justify-between">
-        <HiPencilAlt className="text-2xl" />
-        <HiTrash className="text-2xl text-red-600" />
+        <Link to={`/edit-item/${id}`}>
+          <HiPencilAlt className="text-2xl" />
+        </Link>
+        <button onClick={deleteItem}>
+          <HiTrash className="text-2xl text-red-600" />
+        </button>
       </div>
-      <img src={image} alt={title} className="w-72 rounded-3xl" />
+      <img
+        src={image}
+        alt={title}
+        className="w-72 rounded-3xl"
+      />
       <h1 className="tracking-tighter">{title}</h1>
       <p>Rp. {price}</p>
     </div>
   );
 }
 
-export function CardTransc({ id, date, invoice, status, image }: CardTranscProps) {
+export function CardTransc({
+  id,
+  date,
+  invoice,
+  status,
+  image,
+}: CardTranscProps) {
   return (
-    <div
-      className="flex justify-around items-center w-full bg-white rounded-2xl mt-4"
-    >
+    <div className="flex justify-around items-center w-full bg-white rounded-2xl mt-4">
       <img
         src={image}
         alt={`username`}
