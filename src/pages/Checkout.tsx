@@ -1,9 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Layout } from "../components/Layout";
 import CardCheckout from "../components/CardCheckout";
 import { Btn } from "../components/Button";
 
+interface CheckoutType {
+  cart_id: number;
+  product_id: number;
+  quantity: number;
+  subtotal: number;
+}
+
 function Checkout() {
+  const [checkoutData, setCheckoutData] = useState<CheckoutType>({
+    cart_id: 1,
+    product_id: 1,
+    quantity: 1,
+    subtotal: 2000000,
+  });
+
+  const handleOrder = () => {
+    axios
+      .post(
+        "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/orders",
+        checkoutData
+      )
+      .then((res) => {
+        setCheckoutData(res.data);
+        console.log(res.data);
+        alert("Order Success");
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  };
+
   return (
     <Layout>
       <div className="w-full h-full font-semibold text-xl">
@@ -53,7 +84,9 @@ function Checkout() {
           <p className="text-primary">Rp.4,998,000</p>
         </div>
         <div className="justify-end pr-32 flex pb-8 bg-white">
-          <Btn className="w-40" label="Order" />
+          <form onSubmit={handleOrder}>
+            <Btn type="submit" className="w-40" label="Order" />
+          </form>
         </div>
       </div>
     </Layout>

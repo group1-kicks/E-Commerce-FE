@@ -4,11 +4,13 @@ interface FormProps
   extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   id: string;
+  min?: string;
 }
 
 export const InputForm: FC<FormProps> = ({
   id,
   title,
+  min,
   ...props
 }) => {
   return (
@@ -16,9 +18,11 @@ export const InputForm: FC<FormProps> = ({
       <p className="my-1">{title}</p>
       <input
         id={id}
+        min={min}
         className="bg-form w-full p-3 rounded-lg "
         {...props}
       />
     </div>
   );
 };
+
