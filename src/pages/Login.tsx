@@ -14,6 +14,8 @@ function Login() {
   });
 
   const [cookies, setCookie, removeCookie] = useCookies([
+    "id",
+    "username",
     "token",
   ]);
 
@@ -40,13 +42,12 @@ function Login() {
   ) => {
     e.preventDefault();
     axios
-      .post(
-        "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/login",
-        formLogin
-      )
+      .post("https://onallo.store/login", formLogin)
       .then((res) => {
         console.log(res.data.data);
-        setCookie("token", res.data.data.token);
+        setCookie("id", res.data.data.id);
+        setCookie("username", res.data.data.username);
+        setCookie("token", res.data.token);
 
         alert("Success login");
         navigate("/");
