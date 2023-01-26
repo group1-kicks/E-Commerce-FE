@@ -9,7 +9,7 @@ interface FormProps extends InputHTMLAttributes<HTMLInputElement> {
 export const InputForm: FC<FormProps> = ({ id, title, min, ...props }) => {
   return (
     <div className="my-3">
-      <p className="my-1">{title}</p>
+      <p className="my-1 font-bold text-lg">{title}</p>
       <input
         id={id}
         min={min}
