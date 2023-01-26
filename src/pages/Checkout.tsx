@@ -20,14 +20,15 @@ function Checkout() {
   });
 
   const handleOrder = () => {
+    // alert("success");
     axios
       .post(
         "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/orders",
         checkoutData
       )
       .then((res) => {
-        setCheckoutData(res.data);
-        console.log(res.data);
+        setCheckoutData(res.data.data);
+        console.log(res.data.data);
         alert("Order Success");
       })
       .catch((err) => {
@@ -38,18 +39,11 @@ function Checkout() {
   return (
     <Layout>
       <div className="w-full h-full font-semibold text-xl">
-        <div
-          className="w-full bg-white h-20 justify-center text-4xl flex items-center
-
-        "
-        >
+        <div className="w-full bg-white h-20 justify-center text-4xl flex items-center">
           <h1>Checkout</h1>
         </div>
         <p className="pl-40 pt-8">Seller Username</p>
-        <div
-          className="flex justify-center pt-8
-         "
-        >
+        <div className="flex justify-center pt-8 ">
           <p className=" self-center ">items</p>
           <p className="pl-48 self-center ">Quantity</p>
           <p className="pl-48 self-center ">Price</p>
@@ -66,10 +60,7 @@ function Checkout() {
             price={2000000}
           />
         </div>
-        <div
-          className="h-40 pl-40 pt-8
-        "
-        >
+        <div className="h-40 pl-40 pt-8">
           <p>Shipment Detail</p>
           <br />
           <p>Address:</p>
@@ -84,9 +75,9 @@ function Checkout() {
           <p className="text-primary">Rp.4,998,000</p>
         </div>
         <div className="justify-end pr-32 flex pb-8 bg-white">
-          <form onSubmit={handleOrder}>
-            <Btn type="submit" className="w-40" label="Order" />
-          </form>
+          <button className="w-40 " onClick={handleOrder}>
+            order
+          </button>
         </div>
       </div>
     </Layout>
