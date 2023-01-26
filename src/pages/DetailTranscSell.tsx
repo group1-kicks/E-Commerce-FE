@@ -48,10 +48,3 @@ function DetailTranscSell() {
 }
 
 export default DetailTranscSell;
-
-//   <div
-//     className=" font-semibold text-xl pt-12 w-full justify-center flex justify-items-center
-// h-auto"
-//   >
-//     <div className="  rounded-2xl flex flex-col h-[35rem] p-12 w-4/5  bg-white">
-//       <p>Invoice</p>
