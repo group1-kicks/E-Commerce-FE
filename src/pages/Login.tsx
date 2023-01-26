@@ -47,7 +47,7 @@ function Login() {
         console.log(res.data.data);
         setCookie("id", res.data.data.id);
         setCookie("username", res.data.data.username);
-        setCookie("token", res.data.data.token);
+        setCookie("token", res.data.token);
 
         alert("Success login");
         navigate("/");

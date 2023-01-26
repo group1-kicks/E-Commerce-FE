@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 import { Layout } from "../components/Layout";
 import { Sidebar } from "../components/Sidebar";
@@ -12,6 +13,7 @@ import { UserTypes } from "../utils/Type";
 
 function MyProfile() {
   const [users, setUsers] = useState<UserTypes>();
+  const [cookie] = useCookies(["token"]);
 
   useEffect(() => {
     fetchDataUser();
@@ -19,26 +21,14 @@ function MyProfile() {
 
   function fetchDataUser() {
     axios
-      .get(
-        "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/users"
-      )
+      .get("https://onallo.store/users", {
+        headers: {
+          Authorization: `Bearer ${cookie.token}`,
+        },
+      })
       .then((res) => {
         setUsers(res.data.data);
         console.log(res.data.data);
-      })
-      .catch((err) => {
-        alert(err.toString());
-      });
-  }
-
-  function deleteItemUser(user: UserTypes) {
-    axios
-      .delete(
-        `https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/products/${user.product}`
-      )
-      .then((res) => {
-        console.log(res);
-        alert(`You've removed this items!`);
       })
       .catch((err) => {
         alert(err.toString());
@@ -70,7 +60,7 @@ function MyProfile() {
               />
             </Link>
           </div>
-          <div className="p-8 grid lg:grid-cols-3">
+          {/* <div className="p-8 grid lg:grid-cols-3">
             {users?.product.map((user, index) => (
               <Cardprofile
                 key={index}
@@ -78,10 +68,9 @@ function MyProfile() {
                 image={user.image}
                 title={user.product_name}
                 price={user.price}
-                deleteItem={deleteItemUser}
               />
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>
