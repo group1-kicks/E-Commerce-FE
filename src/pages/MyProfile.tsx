@@ -10,6 +10,7 @@ import { Cardprofile } from "../components/Card";
 import { IoIosPerson } from "react-icons/io";
 
 import { UserTypes } from "../utils/Type";
+import { HiMenuAlt1 } from "react-icons/hi";
 
 function MyProfile() {
   const [users, setUsers] = useState<UserTypes>();
@@ -21,14 +22,9 @@ function MyProfile() {
 
   function fetchDataUser() {
     axios
-      .get("https://onallo.store/users", {
-        headers: {
-          Authorization: `Bearer ${cookie.token}`,
-        },
-      })
+      .get("https://onallo.store/users")
       .then((res) => {
         setUsers(res.data.data);
-        console.log(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
@@ -48,29 +44,33 @@ function MyProfile() {
               <IoIosPerson className="text-6xl text-primary" />
               <div className="ml-2">
                 <h1 className="tracking-tight uppercase">
-                  {users?.name}
+                  {users?.fullname}
                 </h1>
                 <p>{users?.city}</p>
               </div>
             </div>
             <Link to="/new-item">
-              <Btn
-                className="max-w-xs"
-                label="Add New Product"
-              />
+              <Btn className="max-w-xs" label="Add New Product" />
             </Link>
           </div>
-          {/* <div className="p-8 grid lg:grid-cols-3">
-            {users?.product.map((user, index) => (
-              <Cardprofile
-                key={index}
-                id={user.product_id}
-                image={user.image}
-                title={user.product_name}
-                price={user.price}
-              />
-            ))}
-          </div> */}
+          <div className="p-8 grid lg:grid-cols-3">
+            {users?.product !== null ? (
+              users?.product.map((user, index) => (
+                <Cardprofile
+                  key={index}
+                  id={user.product_id}
+                  image={user.image}
+                  title={user.name}
+                  price={user.price}
+                />
+              ))
+            ) : (
+              <p className="w-full mt-10 tracking-tight">
+                {users.fullname} doesn't have any items yet, please
+                add items first!
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </Layout>
