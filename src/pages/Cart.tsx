@@ -23,7 +23,8 @@ function Cart() {
     axios
       .get("https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts")
       .then((res) => {
-        setCartItems(res.data);
+        setCartItems(res.data.data);
+        // console.log(res.data.data);
       });
   }, []);
 
@@ -65,18 +66,10 @@ function Cart() {
   return (
     <Layout>
       <div className="w-full h-full font-semibold text-xl">
-        <div
-          className="w-full bg-white h-20 justify-center text-4xl flex items-center
-
-Copy code
-    "
-        >
+        <div className="w-full bg-white h-20 justify-center text-4xl flex items-center ">
           <h1>Cart</h1>
         </div>
-        <div
-          className="flex justify-center pt-8
-     "
-        >
+        <div className="flex justify-center pt-8">
           <p className=" self-center ">items</p>
           <p className="pl-48 self-center ">Quantity</p>
           <p className="pl-48 self-center ">Price</p>

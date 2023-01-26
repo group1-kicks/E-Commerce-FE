@@ -92,7 +92,7 @@ function AddProduct() {
                   onChange={handleChange}
                 />
                 <br />
-                <Btns className="w-44" label="input image"></Btns>
+                <input type={"file"}></input>
                 <br />
                 <div className="flex justify-end">
                   <Btn className="w-44" label="Add Product"></Btn>
