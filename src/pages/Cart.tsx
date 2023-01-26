@@ -19,15 +19,23 @@ function Cart() {
   const [cartItems, setCartItems] = useState<CartType[]>([]);
 
   useEffect(() => {
+    fetchCart;
+  }, []);
+
+  function fetchCart() {
+    // alert("berhasil");
     // GET request
     axios
       .get("https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts")
       .then((res) => {
         setCartItems(res.data.data);
+        // alert("berhasil 1");
         // console.log(res.data.data);
+      })
+      .catch((err) => {
+        alert(err.toString());
       });
-  }, []);
-
+  }
   const handleDelete = ({ cart_id }: { cart_id: CartType }) => {
     // DELETE request
     axios
@@ -35,12 +43,13 @@ function Cart() {
         `https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts/${cart_id}`
       )
       .then((res) => {
+        alert("successfully delete items");
         setCartItems((prev) =>
           prev.filter((item) => item.product_id !== cart_id)
         );
       })
       .catch((err) => {
-        alert(err.toString());
+        alert("Error deleting item from cart");
       });
   };
 
@@ -52,6 +61,7 @@ function Cart() {
         cart_id
       )
       .then((res) => {
+        alert("successfully update items");
         setCartItems((prev) =>
           prev.map((item) =>
             item.product_id === cart_id.product_id ? cart_id : item
@@ -59,7 +69,7 @@ function Cart() {
         );
       })
       .catch((err) => {
-        alert(err.toString());
+        alert("Error updating item from cart");
       });
   };
 
@@ -88,10 +98,7 @@ function Cart() {
             />
           ))}
         </div>
-        <div
-          className="h-60
-    "
-        />
+        <div className="h-60" />
         <div className="bg-white h-28 flex justify-around pt-8 ">
           <p>Total Price</p>
           <p className="text-primary">Rp.4,998,000</p>

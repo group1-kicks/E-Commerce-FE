@@ -7,8 +7,20 @@ interface CardProps {
   title?: string;
   quantity?: number;
   price?: number;
+  cart_id?: number;
+  product_id?: number;
+  subtotal?: number;
 }
-function CardCheckout({ id, image, title, quantity, price }: CardProps) {
+function CardCheckout({
+  id,
+  image,
+  title,
+  quantity,
+  price,
+  cart_id,
+  product_id,
+  subtotal,
+}: CardProps) {
   return (
     <div
       className="w-5/6 font-semibold text-xl rounded-xl h-40 bg-white  flex justify-around

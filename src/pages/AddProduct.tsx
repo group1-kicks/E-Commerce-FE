@@ -42,7 +42,7 @@ function AddProduct() {
         alert("Product added successfully!");
       })
       .catch((error) => {
-        alert(error.tostring());
+        alert("product was not added successfully");
       });
   };
   return (
