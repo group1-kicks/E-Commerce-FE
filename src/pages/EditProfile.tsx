@@ -1,60 +1,56 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
 import { Layout } from "../components/Layout";
 import { InputForm } from "../components/Input";
-import { Btn } from "../components/Button";
-import { Btns } from "../components/Button";
+import { Btn, Btns } from "../components/Button";
 import { Sidebar } from "../components/Sidebar";
 
-interface EditProfileType {
-  username: string;
-  name: string;
-  email: string;
-  city: string;
-  phone: string;
-}
 function EditProfile() {
-  const [data, setData] = useState<EditProfileType>({
-    username: "",
-    name: "",
-    email: "",
-    city: "",
-    phone: "",
-  });
+  const [username, setUsername] = useState<string>("");
+  const [fullname, setFullname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
 
-  async function updateProfile(e: React.FormEvent<HTMLFormElement>) {
+  const [cookie] = useCookies(["username"]);
+  const navigate = useNavigate();
+
+  const handleEdit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await axios
-        .put(
-          "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/users",
-          data
-        )
-        .then((res) => {
-          alert("successfully change profile");
-          setData(res.data);
-          // console.log(res.data);
-        });
-    } catch (error) {
-      alert("unsuccessful account update");
-    }
-  }
 
-  async function deleteProfile() {
-    try {
-      await axios
-        .delete(
-          "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/users"
-        )
-        .then((res) => {
-          alert("successfully delete profile");
-          setData(res.data);
-          // console.log(res.data);
-        });
-    } catch (error) {
-      alert("unsuccessful account delete");
-    }
-  }
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("fullname", fullname);
+    formData.append("email", email);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("phone", phone);
+
+    axios
+      .put("https://onallo.store/users", formData)
+      .then((res) => {
+        alert("Successfully change profile!");
+        navigate(`/profile/${cookie.username}`);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
+
+  const deleteProfile = () => {
+    axios
+      .delete("https://onallo.store/users")
+      .then((res) => {
+        alert("successfully delete profile");
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
 
   return (
     <Layout>
@@ -69,74 +65,52 @@ function EditProfile() {
           h-auto"
           >
             <div className="  rounded-2xl flex flex-col h-[60rem] p-12 w-4/6  bg-white">
-              <form onSubmit={updateProfile}>
-                <p className="font-semibold text-xl">Username</p>
+              <form onSubmit={handleEdit}>
                 <InputForm
-                  id=""
+                  title="Username"
                   type={"text"}
-                  placeholder={"  Username"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={(e) =>
-                    setData({ ...data, username: e.target.value })
-                  }
+                  placeholder={"Username"}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
-                <p className="font-semibold text-lg pt-3">Full Name</p>
                 <InputForm
-                  id=""
+                  title="Full Name"
                   type={"text"}
-                  placeholder={"  Full name"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={(e) =>
-                    setData({ ...data, username: e.target.value })
-                  }
+                  placeholder={"Full Name"}
+                  onChange={(e) => setFullname(e.target.value)}
                 />
-                <p className="font-semibold text-xl pt-4">Email</p>
                 <InputForm
-                  id=""
+                  title="Email"
                   type={"email"}
-                  placeholder={"  Email address"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={(e) =>
-                    setData({ ...data, username: e.target.value })
-                  }
+                  placeholder={"Email"}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                <p className="font-semibold text-xl pt-4">Phone Number</p>
                 <InputForm
-                  id=""
+                  title="Phone Number"
                   type={"text"}
-                  placeholder={"  08987656788"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={(e) =>
-                    setData({ ...data, username: e.target.value })
-                  }
+                  placeholder={"Phone Number"}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
-                <p className="font-semibold text-xl pt-4">Address</p>
                 <InputForm
-                  id=""
+                  title="Address"
                   type={"text"}
-                  placeholder={"  JL.Sudirman"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={(e) =>
-                    setData({ ...data, username: e.target.value })
-                  }
+                  placeholder={"Address"}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
-                <p className="font-semibold text-xl pt-4">City</p>
                 <InputForm
-                  id=""
+                  title="City"
                   type={"text"}
-                  placeholder={"  Jakarta"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={(e) =>
-                    setData({ ...data, username: e.target.value })
-                  }
+                  placeholder={"City"}
+                  onChange={(e) => setCity(e.target.value)}
                 />
-                <br />
-                <Btn className="w-full" label="Submit" type="submit"></Btn>
+                <Btn
+                  className="w-full mt-8"
+                  label="Submit"
+                  type="submit"
+                ></Btn>
                 <div className="flex justify-end pt-8"></div>
               </form>
               <Btns
                 label="delete account"
-                className="w-48"
                 onClick={deleteProfile}
               ></Btns>
             </div>
