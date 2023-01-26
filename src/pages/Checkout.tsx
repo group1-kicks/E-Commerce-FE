@@ -20,7 +20,6 @@ function Checkout() {
   });
 
   const handleOrder = () => {
-    // alert("success");
     axios
       .post(
         "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/orders",
@@ -32,7 +31,7 @@ function Checkout() {
         alert("Order Success");
       })
       .catch((err) => {
-        alert(err.toString());
+        alert("failed order");
       });
   };
 
@@ -51,12 +50,13 @@ function Checkout() {
         <div className="flex justify-center  pt-8">
           <CardCheckout
             key={1}
-            id={1}
+            cart_id={checkoutData.cart_id}
+            product_id={checkoutData.product_id}
             image={
               "https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_440/bac37b3a-4a82-4d7e-a0ef-69000ce91066/react-infinity-3-road-running-shoes-mMGgGZ.png"
             }
             title={"Nike React Infinity 3"}
-            quantity={1}
+            quantity={checkoutData.quantity}
             price={2000000}
           />
         </div>

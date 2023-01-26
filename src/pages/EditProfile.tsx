@@ -22,8 +22,7 @@ function EditProfile() {
     phone: "",
   });
 
-  async function updateProfile(e: any) {
-    alert("success");
+  async function updateProfile(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
       await axios
@@ -32,10 +31,12 @@ function EditProfile() {
           data
         )
         .then((res) => {
-          console.log(res.data);
+          alert("successfully change profile");
+          setData(res.data);
+          // console.log(res.data);
         });
     } catch (error) {
-      console.error(error);
+      alert("unsuccessful account update");
     }
   }
 
@@ -46,10 +47,12 @@ function EditProfile() {
           "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/users"
         )
         .then((res) => {
-          console.log(res.data);
+          alert("successfully delete profile");
+          setData(res.data);
+          // console.log(res.data);
         });
     } catch (error) {
-      console.error(error);
+      alert("unsuccessful account delete");
     }
   }
 
@@ -129,14 +132,13 @@ function EditProfile() {
                 />
                 <br />
                 <Btn className="w-full" label="Submit" type="submit"></Btn>
-                <div className="flex justify-end pt-8">
-                  <Btns
-                    label="delete account"
-                    className="w-48"
-                    onClick={deleteProfile}
-                  ></Btns>
-                </div>
+                <div className="flex justify-end pt-8"></div>
               </form>
+              <Btns
+                label="delete account"
+                className="w-48"
+                onClick={deleteProfile}
+              ></Btns>
             </div>
           </div>
         </div>
