@@ -45,8 +45,7 @@ function Register() {
     }
     axios
       .post("https://onallo.store/register", formRegister)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         alert("Success signup");
         navigate("/login");
       })
