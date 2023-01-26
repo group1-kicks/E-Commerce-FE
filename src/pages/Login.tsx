@@ -50,7 +50,7 @@ function Login() {
         navigate("/");
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
       });
   };
 

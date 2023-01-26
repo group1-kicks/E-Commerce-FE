@@ -50,7 +50,7 @@ function Register() {
         navigate("/login");
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
       });
   };
 
