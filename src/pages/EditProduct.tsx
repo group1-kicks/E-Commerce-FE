@@ -1,78 +1,69 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useParams } from "react-router-dom";
+
 import { Layout } from "../components/Layout";
 import { InputForm } from "../components/Input";
 import { Btn } from "../components/Button";
 import { Btns } from "../components/Button";
 import { Sidebar } from "../components/Sidebar";
 
-interface EditProductType {
-  product_id: number;
-  product_name: string;
-  description: string;
-  price: number;
-  stock: number;
-}
-function EditProduct({ product_id }: { product_id: number }) {
-  const [product, setProduct] = useState<EditProductType>({
-    product_id: 1,
-    product_name: "",
-    description: "",
-    price: 1,
-    stock: 1,
-  });
+function EditProduct() {
+  const [cookie] = useCookies(["token"]);
+  const { product_id } = useParams();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    if (name === "product_id") {
-      setProduct({ ...product });
-    } else {
-      setProduct({ ...product, [name]: value });
-    }
-  };
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    try {
-      await axios
-        .put(
-          `https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/products/${product_id}`,
-          product
-        )
-        .then((res) => {
-          setProduct(res.data);
-        });
-      alert("Product successfully updated!");
-    } catch (error) {
-      alert("products are not updated");
-    }
+  const [product_name, setProduct_name] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<any>(0);
+  const [image, setImage] = useState<any>({});
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("product_name", product_name);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("image", image);
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${cookie.token}`,
+      },
+    };
+    axios
+      .put(`https://onallo.store/products/${product_id}`, formData, config)
+      .then((res) => {
+        alert("Product successfully updated!");
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   };
 
   return (
     <Layout>
       <div className="w-full h-[50rem]">
-        <div className="w-full bg-white h-20 justify-center text-4xl flex items-center">
+        <div className="w-full bg-white h-20 justify-start text-4xl flex items-center p-5">
           <h1>Edit product</h1>
         </div>
         <div className="flex">
           <Sidebar />
-          <img
-            className=" rounded-full"
-            src="https://pics.freeicons.io/uploads/icons/png/7287311761535956910-512.png"
-          />
-          <h1 className="text-2xl">Username</h1>
           <div
             className=" pt-8 w-full justify-center flex justify-items-center
             h-auto"
           >
             <div className="  rounded-2xl flex flex-col h-[40rem] p-12 w-4/6  bg-white">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <p className="font-semibold text-xl">Product Name</p>
                 <InputForm
                   id=""
                   type={"text"}
                   placeholder={"  sepatu"}
                   className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={handleChange}
+                  onChange={(e) => setProduct_name(e.target.value)}
                 />
                 <p className="font-semibold text-lg pt-3">Price</p>
                 <InputForm
@@ -80,7 +71,7 @@ function EditProduct({ product_id }: { product_id: number }) {
                   type={"number"}
                   placeholder={"  1000000"}
                   className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={handleChange}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
                 <p className="font-semibold text-xl pt-4">Description</p>
                 <InputForm
@@ -88,11 +79,13 @@ function EditProduct({ product_id }: { product_id: number }) {
                   type={"text"}
                   placeholder={"  Description"}
                   className="w-full h-40 rounded-lg bg-slate-300 "
-                  onChange={handleChange}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
                 <br />
-                <Btns className="w-44" label="input image"></Btns>
-                <br />
+                <input
+                  type={"file"}
+                  onChange={(e: any) => setImage(e.target.files[0])}
+                ></input>
                 <div className="flex justify-end">
                   <Btn className="w-44" label="Edit Product"></Btn>
                 </div>
@@ -106,17 +99,3 @@ function EditProduct({ product_id }: { product_id: number }) {
 }
 
 export default EditProduct;
-
-// useEffect(() => {
-//   const handleSubmit = (event: React.FormEvent<HTMLFormElement>,product_id:EditProductType ) => {
-//     event.preventDefault();
-//     axios
-//       .put(`https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/products${product_id}`, product)
-//       .then((response) => {
-//         console.log(response);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   };
-// }, [product])

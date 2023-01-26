@@ -15,19 +15,21 @@ function Shop() {
 
   function fetchDataItems() {
     axios
-      .get("https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/products")
+      .get("https://onallo.store/products")
       .then((res) => {
         setItems(res.data.data);
         console.log(res.data.data);
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
       });
   }
 
   return (
     <Layout>
-      <h1 className="text-4xl text-center p-5 bg-white shadow-sm">Shop</h1>
+      <h1 className="text-4xl text-center p-5 bg-white shadow-sm">
+        Shop
+      </h1>
       <div className="flex justify-center">
         <div className="grid md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (

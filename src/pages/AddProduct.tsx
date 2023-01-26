@@ -1,102 +1,84 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+
 import { Layout } from "../components/Layout";
 import { InputForm } from "../components/Input";
 import { Btn } from "../components/Button";
-import { Btns } from "../components/Button";
 import { Sidebar } from "../components/Sidebar";
 
-interface ProductType {
-  product_id: number;
-  product_name: string;
-  description: string;
-  price: number;
-  image: string;
-  stock: number;
-}
-
 function AddProduct() {
-  const [product, setProduct] = useState<ProductType>({
-    product_id: 1,
-    product_name: "",
-    description: "",
-    price: 1,
-    image: "",
-    stock: 1,
-  });
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setProduct({ ...product, [name]: value });
-  };
+  const [productname, setProductname] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<any>(0);
+  const [image, setImage] = useState<any>({});
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const [cookie] = useCookies(["token", "username"]);
+  const navigate = useNavigate();
+
+  const handleAddProduct = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("product_name", productname);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("image", image);
+
     axios
-      .post(
-        "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/products",
-        product
-      )
-      .then((response) => {
-        setProduct(response.data);
-        console.log(response.data);
+      .post("https://onallo.store/products", formData)
+      .then((res) => {
         alert("Product added successfully!");
+        navigate(`/profile/${cookie.username}`);
       })
-      .catch((error) => {
-        alert("product was not added successfully");
+      .catch((err) => {
+        alert(err.response.data.message);
       });
   };
   return (
     <Layout>
       <div className="w-full h-[50rem]">
-        <div className="w-full bg-white h-20 justify-center text-4xl flex items-center">
-          <h1>Create new product</h1>
-        </div>
+        <header className="bg-white border-b-8 border-secondary text-4xl p-5">
+          <h1>Add product</h1>
+        </header>
         <div className="flex">
           <Sidebar />
-          <img
-            className=" rounded-full"
-            src="https://pics.freeicons.io/uploads/icons/png/7287311761535956910-512.png"
-          />
-          <h1 className="text-2xl">Username</h1>
           <div
             className=" pt-8 w-full justify-center flex justify-items-center
           h-auto"
           >
             <div className="  rounded-2xl flex flex-col h-[40rem] p-12 w-4/6  bg-white">
-              <form onSubmit={handleSubmit}>
-                <p className="font-semibold text-xl">Product Name</p>
+              <form
+                onSubmit={handleAddProduct}
+                encType="multipart/form-data"
+              >
                 <InputForm
-                  id=""
-                  name="product_name"
+                  title="Product Name"
                   type={"text"}
-                  placeholder={"  sepatu"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={handleChange}
+                  placeholder={"Item Name"}
+                  onChange={(e) => setProductname(e.target.value)}
                 />
-                <p className="font-semibold text-lg pt-3">Price</p>
                 <InputForm
-                  id=""
-                  name="price"
+                  title="Price"
                   type={"number"}
-                  placeholder={"  1000000"}
-                  className="w-full h-12 rounded-lg bg-slate-300 "
-                  onChange={handleChange}
+                  placeholder={"Price"}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
-                <p className="font-semibold text-xl pt-4">Description</p>
                 <InputForm
-                  id=""
-                  name="description"
+                  title="Description"
                   type={"text"}
-                  placeholder={"  Description"}
-                  className="w-full h-40 rounded-lg bg-slate-300 "
-                  onChange={handleChange}
+                  placeholder={"Description"}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
-                <br />
-                <input type={"file"}></input>
-                <br />
-                <div className="flex justify-end">
-                  <Btn className="w-44" label="Add Product"></Btn>
-                </div>
+                <p className="my-4 font-bold text-lg">
+                  Select Images
+                </p>
+                <input
+                  type={"file"}
+                  onChange={(e: any) => setImage(e.target.files[0])}
+                ></input>
+                <Btn className="mt-16" label="Add Product"></Btn>
               </form>
             </div>
           </div>

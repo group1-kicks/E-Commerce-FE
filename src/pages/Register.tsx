@@ -9,7 +9,7 @@ import { Btn } from "../components/Button";
 function Register() {
   const [formRegister, setFormRegister] = useState({
     username: "",
-    name: "",
+    fullname: "",
     email: "",
     password: "",
   });
@@ -26,7 +26,7 @@ function Register() {
 
   useEffect(() => {
     if (
-      formRegister.name &&
+      formRegister.fullname &&
       formRegister.username &&
       formRegister.email &&
       formRegister.password
@@ -37,26 +37,20 @@ function Register() {
     }
   }, [formRegister]);
 
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (rePass !== formRegister.password) {
       alert("Password not match");
       return;
     }
     axios
-      .post(
-        "https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/register",
-        formRegister
-      )
-      .then((res) => {
-        console.log(res);
+      .post("https://onallo.store/register", formRegister)
+      .then(() => {
         alert("Success signup");
         navigate("/login");
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
       });
   };
 
@@ -71,9 +65,7 @@ function Register() {
       >
         <span className="hero-overlay bg-opacity-60" />
         <div className="mx-auto backdrop-blur-3xl bg-white/30 w-full max-w-md rounded-3xl p-5 my-10">
-          <h1 className="text-3xl text-center mb-10">
-            Register
-          </h1>
+          <h1 className="text-3xl text-center mb-10">Register</h1>
           <form onSubmit={handleSubmit}>
             <InputForm
               id="username"
@@ -84,12 +76,12 @@ function Register() {
               value={formRegister.username}
             />
             <InputForm
-              id="name"
+              id="fullname"
               title="Full Name"
               placeholder="Full Name"
               type="text"
               onChange={handleChange}
-              value={formRegister.name}
+              value={formRegister.fullname}
             />
             <InputForm
               id="email"

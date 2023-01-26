@@ -37,23 +37,20 @@ function Login() {
     }
   }, [formLogin]);
 
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
       .post("https://onallo.store/login", formLogin)
       .then((res) => {
-        console.log(res.data.data);
         setCookie("id", res.data.data.id);
         setCookie("username", res.data.data.username);
-        setCookie("token", res.data.token);
+        setCookie("token", res.data.token, { path: "/" });
 
         alert("Success login");
         navigate("/");
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
       });
   };
 
@@ -68,9 +65,7 @@ function Login() {
       >
         <span className="hero-overlay bg-opacity-60" />
         <div className="mx-auto backdrop-blur-3xl bg-white/30 w-full max-w-md rounded-3xl p-5 my-10">
-          <h1 className="text-3xl text-center mb-10">
-            Login
-          </h1>
+          <h1 className="text-3xl text-center mb-10">Login</h1>
           <form onSubmit={handleSubmit}>
             <InputForm
               id="username"
