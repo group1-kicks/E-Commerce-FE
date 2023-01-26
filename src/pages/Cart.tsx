@@ -23,14 +23,10 @@ function Cart() {
   }, []);
 
   function fetchCart() {
-    // alert("berhasil");
-    // GET request
     axios
       .get("https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts")
       .then((res) => {
         setCartItems(res.data.data);
-        // alert("berhasil 1");
-        // console.log(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());

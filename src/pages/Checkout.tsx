@@ -27,7 +27,6 @@ function Checkout() {
       )
       .then((res) => {
         setCheckoutData(res.data.data);
-        console.log(res.data.data);
         alert("Order Success");
       })
       .catch((err) => {
