@@ -22,7 +22,9 @@ function EditProfile() {
     phone: "",
   });
 
-  async function updateProfile() {
+  async function updateProfile(e: any) {
+    alert("success");
+    e.preventDefault();
     try {
       await axios
         .put(
@@ -64,7 +66,7 @@ function EditProfile() {
           h-auto"
           >
             <div className="  rounded-2xl flex flex-col h-[60rem] p-12 w-4/6  bg-white">
-              <form>
+              <form onSubmit={updateProfile}>
                 <p className="font-semibold text-xl">Username</p>
                 <InputForm
                   id=""
@@ -126,11 +128,7 @@ function EditProfile() {
                   }
                 />
                 <br />
-                <Btn
-                  className="w-full"
-                  label="Submit"
-                  onClick={updateProfile}
-                ></Btn>
+                <Btn className="w-full" label="Submit" type="submit"></Btn>
                 <div className="flex justify-end pt-8">
                   <Btns
                     label="delete account"
