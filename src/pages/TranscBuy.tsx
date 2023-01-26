@@ -14,17 +14,17 @@ function DetailTransc() {
 
   useEffect(() => {
     fetchDataOrders();
-  }, []);
+  }, [setOrders]);
 
   function fetchDataOrders() {
     axios
-      .get("https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/orders")
+      .get("https://onallo.store/orders?history=buy")
       .then((res) => {
         setOrders(res.data.data);
-        console.log(res.data.data);
+        // alert("success");
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
       });
   }
 
@@ -50,6 +50,15 @@ function DetailTransc() {
               date={`21 Januari 2023`}
             />
             {orders.map((order, index) => {
+              {
+                console.log(order.order_id);
+              }
+              {
+                console.log(order.order_status);
+              }
+              {
+                console.log(order.order_date);
+              }
               <CardTransc
                 key={index}
                 id={order.order_id}

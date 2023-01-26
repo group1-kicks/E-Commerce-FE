@@ -7,19 +7,21 @@ export interface ItemTypes {
   price: number;
   stock: number;
   image: string;
+  created_date: string;
 }
 
 export interface UserTypes {
   username: string;
-  name: string;
+  fullname: string;
   email: string;
   city: string;
+  address: string;
   phone: string;
   product: [
     {
       product_id: number;
       image: string;
-      product_name: string;
+      name: string;
       price: number;
       stock: number;
     }
@@ -31,4 +33,13 @@ export interface OrdersTypes {
   invoice: string;
   order_date: string;
   order_status: string;
+}
+
+export interface EditProfileType {
+  username: string;
+  fullname: string;
+  email: string;
+  address: string;
+  city: string;
+  phone: string;
 }

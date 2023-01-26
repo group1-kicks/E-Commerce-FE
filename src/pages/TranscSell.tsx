@@ -14,19 +14,19 @@ function DetailTransc() {
 
   useEffect(() => {
     fetchDataOrders();
-  }, []);
+  }, [setOrders]);
 
   function fetchDataOrders() {
     axios
-      .get("https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/orders")
+      .get("https://onallo.store/orders?history=buy")
       .then((res) => {
         setOrders(res.data.data);
+        // alert("success");
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
       });
   }
-
   return (
     <Layout>
       <header className="bg-white border-b-8 border-secondary p-5">
@@ -49,17 +49,17 @@ function DetailTransc() {
               date={`23 Januari 2023`}
             />
             {orders.map((order, index) => {
-                <>
+              <>
                 {console.log(order)}
-              <CardTransc
-                key={index}
-                id={order.order_id}
-                invoice={order.invoice}
-                status={order.order_status}
-                date={order.order_date}
-                
-              />;
-              </>
+                <CardTransc
+                  key={index}
+                  id={order.order_id}
+                  invoice={order.invoice}
+                  status={order.order_status}
+                  date={order.order_date}
+                />
+                ;
+              </>;
             })}
           </>
         </div>

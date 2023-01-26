@@ -37,9 +37,14 @@ function DetailItems() {
 
   function handleToCart() {
     axios
-      .post("")
-      .then(() => {})
-      .catch(() => {});
+      .post("https://onallo.store/carts")
+      .then((res) => {
+        console.log(res);
+        alert("Success add to cart!");
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   }
 
   return (
