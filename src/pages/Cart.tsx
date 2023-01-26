@@ -33,7 +33,6 @@ function Cart() {
       });
   }
   const handleDelete = ({ cart_id }: { cart_id: CartType }) => {
-    // DELETE request
     axios
       .delete(
         `https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts/${cart_id}`
@@ -50,7 +49,6 @@ function Cart() {
   };
 
   const handleUpdate = ({ cart_id }: { cart_id: CartType }) => {
-    // PUT request
     axios
       .put(
         `https://virtserver.swaggerhub.com/audizzy/ecommerce/1.0.0/carts/${cart_id}`,

@@ -34,12 +34,3 @@ export interface OrdersTypes {
   order_date: string;
   order_status: string;
 }
-
-export interface EditProfileType {
-  username: string;
-  fullname: string;
-  email: string;
-  address: string;
-  city: string;
-  phone: string;
-}

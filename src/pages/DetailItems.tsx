@@ -23,12 +23,10 @@ function DetailItems() {
   }, []);
 
   function fetchDataItem() {
-    console.log(product_id);
     axios
       .get(`https://onallo.store/products/${id}`)
       .then((res) => {
         setItem(res.data.data);
-        console.log(res.data);
       })
       .catch((err) => {
         alert(err.response.data.message);
@@ -39,7 +37,6 @@ function DetailItems() {
     axios
       .post("https://onallo.store/carts")
       .then((res) => {
-        console.log(res);
         alert("Success add to cart!");
       })
       .catch((err) => {

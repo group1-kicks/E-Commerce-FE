@@ -34,7 +34,6 @@ function MyProfile() {
     axios
       .delete(`https://onallo.store/products/${product_id}`)
       .then((res) => {
-        console.log(res);
         alert(`You've removed this items!`);
       })
       .catch((err) => {

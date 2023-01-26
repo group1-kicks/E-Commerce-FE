@@ -21,7 +21,6 @@ function DetailTransc() {
       .get("https://onallo.store/orders?history=buy")
       .then((res) => {
         setOrders(res.data.data);
-        // alert("success");
       })
       .catch((err) => {
         alert(err.response.data.message);
@@ -50,15 +49,6 @@ function DetailTransc() {
               date={`21 Januari 2023`}
             />
             {orders.map((order, index) => {
-              {
-                console.log(order.order_id);
-              }
-              {
-                console.log(order.order_status);
-              }
-              {
-                console.log(order.order_date);
-              }
               <CardTransc
                 key={index}
                 id={order.order_id}
