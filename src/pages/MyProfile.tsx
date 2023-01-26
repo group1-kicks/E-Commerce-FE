@@ -10,7 +10,6 @@ import { Cardprofile } from "../components/Card";
 import { IoIosPerson } from "react-icons/io";
 
 import { UserTypes } from "../utils/Type";
-import { HiMenuAlt1 } from "react-icons/hi";
 
 function MyProfile() {
   const [users, setUsers] = useState<UserTypes>();
@@ -27,7 +26,19 @@ function MyProfile() {
         setUsers(res.data.data);
       })
       .catch((err) => {
-        alert(err.toString());
+        alert(err.response.data.message);
+      });
+  }
+
+  function deleteItemUser(product_id: number) {
+    axios
+      .delete(`https://onallo.store/products/${product_id}`)
+      .then((res) => {
+        console.log(res);
+        alert(`You've removed this items!`);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
       });
   }
 
@@ -62,6 +73,7 @@ function MyProfile() {
                   image={user.image}
                   title={user.name}
                   price={user.price}
+                  deleteItem={() => deleteItemUser(user.product_id)}
                 />
               ))
             ) : (
